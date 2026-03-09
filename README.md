@@ -1,6 +1,7 @@
 # NullVault
 
 A secure secrets and API key management REST API built with FastAPI, PostgreSQL, and JWT authentication.
+
 [![tests](https://github.com/Jpeg-create/nullvault/actions/workflows/tests.yml/badge.svg)](https://github.com/Jpeg-create/nullvault/actions/workflows/tests.yml)
 ![Python](https://img.shields.io/badge/python-3.8+-blue.svg)
 ![FastAPI](https://img.shields.io/badge/FastAPI-0.100+-green.svg)
