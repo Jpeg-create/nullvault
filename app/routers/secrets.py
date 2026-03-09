@@ -1,3 +1,4 @@
+from typing import List, Optional
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from app.core.database import get_db
@@ -37,7 +38,7 @@ def create_secret(
     return new_secret
 
 
-@router.get("/", response_model=list[SecretResponse])
+@router.get("/", response_model=List[SecretResponse])
 def list_secrets(
     db: Session = Depends(get_db),
     current_user: User = Depends(get_current_user),
