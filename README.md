@@ -82,7 +82,7 @@ python3 -c "from cryptography.fernet import Fernet; print(Fernet.generate_key().
 uvicorn app.main:app --reload
 ```
 
-Visit **http://127.0.0.1:8000/docs** for the interactive API documentation.
+
 
 ## License
 
