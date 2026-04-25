@@ -1,19 +1,18 @@
-from typing import List, Optional
+from typing import List
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from app.core.database import get_db
 from app.core.auth import get_current_user
+from app.core.config import settings
 from app.models.secret import Secret
 from app.models.audit import AuditLog
 from app.models.user import User
 from app.schemas.secret import SecretCreate, SecretResponse
 from cryptography.fernet import Fernet
-import os
 
 router = APIRouter(prefix="/secrets", tags=["Secrets"])
 
-ENCRYPTION_KEY = os.getenv("ENCRYPTION_KEY", Fernet.generate_key())
-fernet = Fernet(ENCRYPTION_KEY)
+fernet = Fernet(settings.encryption_key.encode())
 
 
 def log_action(db, user_id, action, secret_name=None, ip=None):
