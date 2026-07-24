@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex, nofollow">
-<title>NullVault - Submit a Secret</title>
+<title>NullVault - Secure Secret Submission</title>
 <style>
   :root {
     color-scheme: dark;
@@ -23,9 +23,35 @@
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     padding: 24px;
   }
-  .card {
+  .wrap {
     width: 100%;
-    max-width: 420px;
+    max-width: 460px;
+  }
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0 0 16px;
+  }
+  .brand-mark {
+    width: 28px;
+    height: 28px;
+    border-radius: 8px;
+    background: #4a90e2;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 14px;
+    flex-shrink: 0;
+  }
+  .brand-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: #b5bcc9;
+  }
+  .card {
     background: #12151c;
     border: 1px solid #232732;
     border-radius: 12px;
@@ -39,12 +65,18 @@
     color: #8b93a1;
     font-size: 13px;
     margin: 0 0 24px;
+    line-height: 1.5;
   }
   label {
     display: block;
     font-size: 13px;
     color: #b5bcc9;
     margin: 16px 0 6px;
+  }
+  .field-help {
+    font-size: 12px;
+    color: #6b7280;
+    margin: 6px 0 0;
   }
   input {
     width: 100%;
@@ -99,31 +131,55 @@
     color: #6b7280;
     margin-top: 6px;
   }
+  footer {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 12px;
+    color: #565d6b;
+  }
+  footer a {
+    color: #7a8699;
+  }
 </style>
 </head>
 <body>
-<div class="card">
-  <h1>Submit a secret</h1>
-  <p class="sub">Paste the access token you were given, then enter the secret you want to hand off. This value is encrypted immediately and cannot be viewed back through this page.</p>
+<div class="wrap">
+  <div class="brand">
+    <div class="brand-mark">NV</div>
+    <div class="brand-name">NullVault</div>
+  </div>
 
-  <form id="submitForm">
-    <label for="token">Access token</label>
-    <input id="token" type="password" autocomplete="off" required>
+  <div class="card">
+    <h1>Secure Secret Submission</h1>
+    <p class="sub">This page lets you securely submit an API key or credential to a specific project. Your submission is encrypted immediately and only accessible to the project owner. You should only be here because someone shared a link and access token with you directly.</p>
 
-    <label for="project">Project</label>
-    <input id="project" type="text" autocomplete="off" required placeholder="e.g. acme-app">
+    <form id="submitForm">
+      <label for="token">Access Token (provided to you)</label>
+      <input id="token" type="password" autocomplete="off" required>
+      <p class="field-help">The token you were given for this submission. It only works for the one project below and does not grant any other access.</p>
 
-    <label for="name">Secret name</label>
-    <input id="name" type="text" autocomplete="off" required placeholder="e.g. stripe-api-key">
+      <label for="project">Project</label>
+      <input id="project" type="text" autocomplete="off" required placeholder="e.g. acme-app">
+      <p class="field-help">The project name you were told to use. This determines where your submission is stored.</p>
 
-    <label for="value">Secret value</label>
-    <input id="value" type="password" autocomplete="off" required>
-    <p class="hint">Right after submitting, close this tab. Nothing you enter is stored in this browser.</p>
+      <label for="name">Secret Name</label>
+      <input id="name" type="text" autocomplete="off" required placeholder="e.g. stripe-api-key">
+      <p class="field-help">A short label for what this credential is, e.g. stripe-api-key or db-password.</p>
 
-    <button id="submitBtn" type="submit">Submit secret</button>
-  </form>
+      <label for="value">Secret Value</label>
+      <input id="value" type="password" autocomplete="off" required>
+      <p class="field-help">The actual API key or credential. It is encrypted immediately and cannot be viewed back through this page.</p>
+      <p class="hint">Right after submitting, close this tab. Nothing you enter is stored in this browser.</p>
 
-  <div id="msg" class="msg"></div>
+      <button id="submitBtn" type="submit">Submit secret</button>
+    </form>
+
+    <div id="msg" class="msg"></div>
+  </div>
+
+  <footer>
+    Powered by <a href="https://github.com/Jpeg-create/nullvault" target="_blank" rel="noopener noreferrer">NullVault</a>, an open source secrets manager.
+  </footer>
 </div>
 
 <script>
