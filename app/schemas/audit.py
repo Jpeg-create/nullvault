@@ -5,6 +5,7 @@ from typing import Optional
 
 class AuditLogResponse(BaseModel):
     id: int
+    project_name: str
     action: str
     secret_name: Optional[str]
     ip_address: Optional[str]

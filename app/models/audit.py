@@ -8,6 +8,7 @@ class AuditLog(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     user_id = Column(Integer, ForeignKey("users.id"), nullable=False)
+    project_name = Column(String, nullable=False)
     action = Column(String, nullable=False)
     secret_name = Column(String, nullable=True)
     ip_address = Column(String, nullable=True)

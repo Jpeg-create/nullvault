@@ -1,20 +1,15 @@
 from pydantic import BaseModel
 from datetime import datetime
-from typing import Optional
 
 
-class SecretCreate(BaseModel):
-    project: str
+class ProjectCreate(BaseModel):
     name: str
-    value: str
 
 
-class SecretResponse(BaseModel):
+class ProjectResponse(BaseModel):
     id: int
-    project: str
     name: str
     created_at: datetime
-    updated_at: datetime
 
     class Config:
         from_attributes = True

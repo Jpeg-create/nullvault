@@ -1,0 +1,32 @@
+services:
+  nullvault-db:
+    image: postgres:16
+    container_name: nullvault-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: nullvault
+      POSTGRES_USER: nullvault
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - nullvault_pgdata:/var/lib/postgresql/data
+    networks:
+      - nullvault-net
+
+  nullvault-api:
+    build: .
+    container_name: nullvault-api
+    restart: unless-stopped
+    env_file: .env
+    depends_on:
+      - nullvault-db
+    ports:
+      - "127.0.0.1:8100:8000"
+    networks:
+      - nullvault-net
+
+networks:
+  nullvault-net:
+    driver: bridge
+
+volumes:
+  nullvault_pgdata:
